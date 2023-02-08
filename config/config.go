@@ -2,7 +2,7 @@ package config
 
 import (
 	"fmt"
-	"github.com/spf13/viper"
+	"os"
 )
 
 type Config struct {
@@ -15,11 +15,11 @@ type Config struct {
 
 func LoadConfigFromEnv() *Config {
 	config := Config{
-		MySqlHost:     viper.GetString("MYSQL_HOST"),
-		MySqlPort:     viper.GetString("MYSQL_PORT"),
-		MySqlUser:     viper.GetString("MYSQL_USER"),
-		MySqlPassword: viper.GetString("MYSQL_PASSWORD"),
-		MySqlDBName:   viper.GetString("MYSQL_DBNAME"),
+		MySqlHost:     os.Getenv("MYSQL_HOST"),
+		MySqlPort:     os.Getenv("MYSQL_PORT"),
+		MySqlUser:     os.Getenv("MYSQL_USER"),
+		MySqlPassword: os.Getenv("MYSQL_PASSWORD"),
+		MySqlDBName:   os.Getenv("MYSQL_DBNAME"),
 	}
 
 	return &config

@@ -7,13 +7,7 @@ import (
 )
 
 func TestMigrateAndSeedDB(t *testing.T) {
-	c := &config.Config{
-		MySqlHost:     "localhost",
-		MySqlPort:     "3306",
-		MySqlUser:     "root",
-		MySqlPassword: "password",
-		MySqlDBName:   "technical_test_skyshi_database",
-	}
+	c := config.LoadConfigFromEnv()
 	t.Run("Test Migrate DB", func(t *testing.T) {
 		Migrate(NewDB(c))
 	})
