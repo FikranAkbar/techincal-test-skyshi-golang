@@ -1,6 +1,6 @@
-FROM golang:1.19
+FROM golang:alpine
 
-ENV GO111MODULE=on
+RUN apk update && apk add --no-cache git
 
 WORKDIR /app
 
@@ -8,6 +8,6 @@ COPY . .
 
 RUN go mod tidy
 
-RUN chmod +x /app/start.sh
+RUN go build -o binary
 
-CMD ["go run main.go"]
+ENTRYPOINT ["/app/binary"]
